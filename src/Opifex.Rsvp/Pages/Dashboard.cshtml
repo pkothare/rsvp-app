@@ -1,0 +1,106 @@
+﻿@page
+
+@model DashboardModel
+
+<div class="row">
+    <div class="col-md-12 col-lg-8 offset-lg-2">
+        <h1>Guest Details</h1>
+        @if (Model.ChosenOption == RsvpOptions.Zoom)
+        {
+            <p>Thank you for your response! You can click on Zoom in the navigation above to see the Zoom invite details.</p>
+        }
+        else if (Model.ChosenOption == RsvpOptions.InPerson)
+        {
+            <p>Thank you for your response! You can click on Details in the navigation above to see the ceremony details.</p>
+        }
+        else if (Model.ChosenOption == RsvpOptions.NotAttending)
+        {
+            <p>Thank you for your response! We're sad to hear that you won't be attending.</p>
+        }
+        <p></p>
+        @if (Model.ChosenOption != RsvpOptions.NotAttending)
+        {
+            <p>Add guest information below, and remember to include yourself too!</p>
+        }
+        <hr />
+        <div class="card shadow-lg mb-5">
+            <h5 class="card-header">RSVP</h5>
+            <div class="card-body">
+                @if (Model.ChosenOption == RsvpOptions.Zoom)
+                {
+                    <h3 class="card-title">
+                        Attending via Zoom
+                    </h3>
+                }
+                else if (Model.ChosenOption == RsvpOptions.InPerson)
+                {
+                    <h3 class="card-title">
+                        Attending in person
+                    </h3>
+                }
+                else if (Model.ChosenOption == RsvpOptions.NotAttending)
+                {
+                    <h3 class="card-title">
+                        Not attending
+                    </h3>
+                }
+                <p class="card-text">You can change your RSVP up until November 20th 2020. If you do change it, you will have to add guest information again.</p>
+                <a href="/Rsvp" class="btn btn-outline-primary">Edit</a>
+            </div>
+        </div>
+        @if (Model.ChosenOption != RsvpOptions.NotAttending)
+        {
+            var guestsLeft = Model.MaxGuests - Model.Guests.Count();
+            @if (guestsLeft > 0)
+            {
+                <p>You can add @guestsLeft more guests. If you made a mistake for a guest, please remove them and add their information again.</p>
+                @if (Model.ChosenOption == RsvpOptions.Zoom)
+                {
+                    <a href="/AddZoomGuest" class="btn btn-outline-primary btn-lg btn-block mb-5">Add guest</a>
+                }
+                else if (Model.ChosenOption == RsvpOptions.InPerson)
+                {
+                    <a href="/AddInPersonGuest" class="btn btn-outline-primary btn-lg btn-block mb-5">Add guest</a>
+                }
+            }
+            else
+            {
+                <h2>Guests</h2>
+                @if (Model.ModelState.ErrorCount > 0)
+                {
+                    <div class="mb-3">
+                        <span asp-validation-for="Guests"></span>
+                    </div>
+                }
+            }
+
+        }
+
+        @foreach (Guest guest in Model.Guests)
+        {
+            <form method="post">
+                <input type="hidden" asp-for="@guest.Id" name="guestId" />
+                <div class="card shadow-lg mb-5">
+                    <div class="card-body">
+                        <h3 class="card-title">@guest.Name</h3>
+                        @switch (guest)
+                        {
+                            case ZoomGuest zg:
+                                <p class="card-text">@zg.Email</p>
+                                break;
+                            case InPersonGuest ipg:
+                                <button type="submit" asp-page-handler="Download" class="btn btn-outline-primary">Download Documentation</button>
+                                break;
+                        }
+                        <button type="submit" asp-page-handler="Remove" class="btn btn-outline-primary">Remove</button>
+                    </div>
+                </div>
+            </form>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

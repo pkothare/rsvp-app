@@ -1,0 +1,56 @@
+﻿@page
+@model DetailsModel
+
+<style>
+    #paperCard {
+        background-image: url("/img/details.svg");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-origin: content-box;
+    }
+</style>
+
+@if (Model.Rsvp.ChosenOption == RsvpOptions.InPerson)
+{
+    <div id="paperCard" class="w-100 h-100 flex-grow-1">&nbsp;</div>
+}
+else if (Model.Rsvp.ChosenOption == RsvpOptions.Zoom)
+{
+    <div class="row">
+        <div class="col-md-11 col-lg-11 offset-lg-1 offset-md-1">
+            <h2>
+                Zoom Details
+            </h2>
+            <p>
+                Nov 30, 2020 06:40 PM India
+            </p>
+
+
+            <p>
+                <a style="max-width: 300px;" target="_blank" class="btn btn-outline-primary btn-lg btn-block" href="https://us02web.zoom.us/j/85441672746?pwd=czIralNNMFF0cmVyWlRTZWJTeURodz09">
+                    Join Zoom Meeting
+                </a>
+            </p>
+
+            <p>
+                Meeting ID: 854 4167 2746 <br />
+                Passcode: 646895 <br /><br />
+                <h3>One tap mobile</h3>
+                +14086380968,,85441672746#,,,,,,0#,,646895# US (San Jose) <br />
+                +16468769923,,85441672746#,,,,,,0#,,646895# US (New York) <br />
+            </p>
+            <p>
+                <h3>Dial by your location</h3>
+                +1 408 638 0968 US (San Jose)<br />
+                +1 646 876 9923 US (New York)<br />
+                +1 669 900 6833 US (San Jose)<br />
+                +1 253 215 8782 US (Tacoma)<br />
+                +1 301 715 8592 US (Washington D.C)<br />
+                +1 312 626 6799 US (Chicago)<br />
+                +1 346 248 7799 US (Houston)<br /><br />
+                <a style="max-width: 300px;" target="_blank" class="btn btn-outline-primary btn-lg btn-block" href="https://us02web.zoom.us/u/kedNH6XKiz">Find your local number</a> <br />
+            </p>
+        </div>
+    </div>
+}
+

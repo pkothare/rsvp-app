@@ -1,0 +1,37 @@
+﻿@page
+@model RsvpModel
+
+<div class="row">
+    <div class="col-md-12 col-lg-8 offset-lg-2">
+        <h1>RSVP</h1>
+        <p>Please let us know if you will be attending or not by clicking an option below.</p>
+        @if ((Model.OptionCombinations & RsvpOptions.Zoom) == RsvpOptions.Zoom)
+        {
+            <p>If you will be attending via zoom, we will ask for guest emails (including your email) so that we can forward the invite to you.</p>
+        }
+        @if ((Model.OptionCombinations & RsvpOptions.InPerson) == RsvpOptions.InPerson)
+        {
+            <p>If you will be attending in person, we will collect guest information (including your information) such as government issued photo IDs, for verification purposes.</p>
+        }
+        <hr />
+
+        <form id="rsvp" method="post">
+            <div class="form-group">
+                @if ((Model.OptionCombinations & RsvpOptions.InPerson) == RsvpOptions.InPerson)
+                {
+                    <button name="ChosenOption" type="submit" class="btn btn-outline-primary btn-lg btn-block" value="InPerson">Attending in person</button>
+                }
+                @if ((Model.OptionCombinations & RsvpOptions.Zoom) == RsvpOptions.Zoom)
+                {
+                    <button name="ChosenOption" type="submit" class="btn btn-outline-primary btn-lg btn-block" value="Zoom">Attending via Zoom</button>
+                }
+                <button name="ChosenOption" type="submit" class="btn btn-outline-danger btn-lg btn-block mb-3" value="NotAttending">Regretfully, not attending</button>
+                <span asp-validation-for="ChosenOption"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

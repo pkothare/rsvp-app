@@ -1,0 +1,216 @@
+﻿/* Provide sufficient contrast against white background */
+html, body {
+    height: 100%;
+}
+
+nav.navbar {
+    background: url(/img/ganesh.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 5px;
+    background-size: 60px;
+    background-origin: content-box; 
+}
+
+#mainContainer {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/img/bg13.png');
+    overflow-y: auto;
+    height: 100vh;
+}
+
+#userDisplayName {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+a {
+    color: #fff;
+}
+
+    a:hover {
+        color: #8A665C;
+        text-decoration: none;
+    }
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand,
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #A3867E;
+    border: none;
+    font-size: 18px;
+}
+
+input[type='file'], input[type='file']:active, input[type='file']:focus {
+    background-color: inherit;
+    padding-bottom: 5px;
+}
+
+input[type='file'] {
+    border: none;
+}
+
+input[type="file" i]::-webkit-file-upload-button {
+    color: #fff;
+    margin-left: -15px;
+}
+
+code {
+    color: #E01A76;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+#mainCard {
+    background-color: #D7B1A6;
+    overflow-y: auto;
+}
+
+    #mainCard > * {
+        -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+        -o-animation: fadein 1s; /* Opera < 12.1 */
+        animation: fadein 1s;
+    }
+
+    #mainCard::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    #mainCard:hover::-webkit-scrollbar-track {
+        -webkit-box-shadow: none;
+        border-radius: 10px;
+        background-color: #D7B1A6;
+    }
+
+    #mainCard:hover::-webkit-scrollbar {
+        width: 12px;
+        background-color: #D7B1A6;
+    }
+
+    #mainCard:hover::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: none;
+        background-color: #fff;
+    }
+
+.btn-primary {
+    border-color: #8A665C;
+    background-color: #8A665C;
+}
+
+.btn-outline-primary, .btn-outline-danger {
+    background-color: inherit;
+    border-color: #fff;
+    color: #fff;
+}
+
+    .btn-outline-primary:hover, .btn-outline-primary:not(:disabled):not(.disabled):active {
+        background-color: #8A665C;
+        border-color: #8A665C;
+    }
+
+        input:focus, .form-control:focus, btn:focus, .btn-outline-primary.focus, .btn-outline-primary:focus,
+        btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+        .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+        a:focus, a:-webkit-any-link:focus, a:any-link:focus,
+        .btn.focus, .btn:focus {
+            border-color: #8A665C;
+            box-shadow: 0 0 0 0.2rem rgba(138,102,92,.25);
+            outline: none;
+        }
+
+.card {
+    background-color: #A3867E;
+    border: none;
+}
+
+    .card > .card-header {
+        background-color: #A3867E;
+        border: none;
+    }
+
+* {
+    color: #fff;
+    font-family: cormorant-garamond, serif;
+    font-weight: 900 !important;
+    font-style: normal;
+    letter-spacing: 1.5px;
+    font-size: large;
+}
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+input[type="text"] {
+    color: #000 !important;
+}

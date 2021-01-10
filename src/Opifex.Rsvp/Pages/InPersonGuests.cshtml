@@ -1,0 +1,40 @@
+﻿@page
+@model Opifex.Rsvp.Pages.InPersonGuestsModel
+<style>
+    #mainCard {
+        width: 100% !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+</style>
+
+<div class="alert alert-light" role="alert">
+    There are a total of @Model.Rows.Count() in person guests.
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Rows)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <form method="post">
+                    <input type="hidden" asp-for="@item.Id" name="guestId" />
+                    <button type="submit" asp-page-handler="Download" class="btn btn-outline-primary">Download Documentation</button>
+                    <button type="submit" asp-page-handler="SendReminder" class="btn btn-outline-primary">Send Reminder</button>
+                </form>
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>

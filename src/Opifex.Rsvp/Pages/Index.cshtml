@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+<style>
+    #paperCard {
+        background-image: url("/img/names.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-origin: content-box;
+    }
+
+    #dateCard {
+        background-image: url("/img/date.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-origin: content-box;
+    }
+
+
+    .index {
+        text-align: center;
+        letter-spacing: 10px !important;
+    }
+</style>
+
+<div id="paperCard" class="w-100 h-50 mb-3">&nbsp;</div>
+
+<h1 class="index" id="countDown"></h1>
+
+<div id="dateCard" class="w-100 h-25">&nbsp;</div>
+
+<h1 class="index">BLESSINGS ONLY</h1>
+
+<script>
+    var countDownDate = new Date("Nov 30, 2020 12:00:00").getTime();
+    function updateCountDown() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("countDown").innerText = days + " DAYS TO";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countDown").innerText = "ITS FINALLY HERE!";
+        }
+    }
+    updateCountDown();
+    var x = setInterval(updateCountDown, 10000);
+</script>

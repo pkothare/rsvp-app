@@ -1,0 +1,50 @@
+﻿@page
+@model Opifex.Rsvp.Pages.AddInPersonGuestModel
+
+@{
+    ViewData["Title"] = "AddZoomGuest";
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-8 offset-lg-2">
+        <h1>Add Guest</h1>
+        <p>Specify the name of the guest and provide a scan or an image of the guest's government issued ID.</p>
+        <hr />
+        <form enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <label asp-for="InPersonGuest.Name" class="control-label"></label>
+                <input asp-for="InPersonGuest.Name" class="form-control" />
+                <span asp-validation-for="InPersonGuest.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Government issued photo ID (Aadhar card or passport)</label>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input asp-for="InPersonGuest.Document" class="custom-file-input" accept="@AllowedFileExtensions.AcceptAttribute" />
+                        <label asp-for="InPersonGuest.Document" class="custom-file-label text-truncate">Choose File</label>
+                    </div>
+                </div>
+                <span asp-validation-for="InPersonGuest.Document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('#InPersonGuest_Document').on('change', function (e) {
+            var fileName = "Choose File";
+            //get the file name
+            if (e.target.files && e.target.files.length > 0) {
+                fileName = e.target.files[0].name;
+            }
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
+}
+
