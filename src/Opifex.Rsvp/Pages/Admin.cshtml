@@ -1,0 +1,72 @@
+﻿@page
+@model Opifex.Rsvp.Pages.AdminModel
+    <style>
+        #mainCard {
+            width: 100% !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+        }
+    </style>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].EmailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].MaxGuests)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].RsvpType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].HasRsvped)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].ChosenRsvp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RsvpData[0].NumberOfGuestsAdded)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RsvpData)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaxGuests)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RsvpType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasRsvped)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChosenRsvp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfGuestsAdded)
+                    </td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" asp-for="@item.UserId" name="userId" />
+                            <button type="submit" asp-page-handler="SendWelcomeEmail" class="btn btn-outline-primary">Send Welcome Email</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

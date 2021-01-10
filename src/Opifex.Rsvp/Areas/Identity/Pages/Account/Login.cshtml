@@ -1,0 +1,34 @@
+﻿@page
+@model LoginModel
+
+
+<div class="row">
+    <div class="col-md-12 col-lg-8 offset-lg-2">
+        <h1>Log in</h1>
+        <p>Please login using the email where you received the card (it will only work for that email address).</p>
+        <p>If this is your first attempt to login, then click on the forgot password link below to generate a new password.</p>
+        <hr />
+        <form id="account" method="post">
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary">Log in</button>
+            </div>
+            <div class="form-group">
+                <p><a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

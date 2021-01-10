@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject ApplicationDbContext AppContext
+
+<ul class="nav navbar-nav mr-auto">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var foundUser = await UserManager.GetUserAsync(User);
+    <li class="nav-item">
+        <a id="userDisplayName" class="nav-link d-lg-block" title="@foundUser.DisplayName">@foundUser.DisplayName</a>
+    </li>
+    }
+</ul>
+<ul class="nav navbar-nav ml-auto">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var foundUser = await UserManager.GetUserAsync(User);
+        var rsvp = AppContext.Rsvps.FirstOrDefault(x => x.Id == foundUser.Id);
+        var isAdmin = await UserManager.IsInRoleAsync(foundUser, "Administrator");
+        var isManager = await UserManager.IsInRoleAsync(foundUser, "Manager");
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-page="/Dashboard" title="RSVP">RSVP</a>
+    </li>
+    @if(rsvp != null && rsvp.ChosenOption != RsvpOptions.NotAttending)
+            {
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-page="/Details" title="Details">Details</a>
+    </li>
+            }
+    @if(isAdmin || isManager)
+    {
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" asp-area="" asp-page="/Admin">Users &amp; RSVPs</a>
+            <a class="dropdown-item" asp-area="" asp-page="/ZoomGuests">Zoom Guests</a>
+            <a class="dropdown-item" asp-area="" asp-page="/InPersonGuests">In Person Guests</a>
+        </div>
+    </li>
+    }
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </li>
+   }
+   else
+   {
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+        }
+</ul>
