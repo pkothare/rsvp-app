@@ -10,7 +10,7 @@ This application is what I used for my own wedding, which is why you'll find a l
 The application is meant to provide comprehensive management of RSVPs for events across a variety of roles. Normal users can RSVP to an event and add guests based on constraints specified when seeding data. Managers can view a full list of guests and their details. This role is usually applied to persons that manage the event location. This way, the manager can check IDs at the door, if needed. Finally administrators have the additional capability of sending email notifications to their guests. The information below gives further detail about each of the distinct features.
 
 ### Seeding Data
-Seeding of initial set of users using [InitialData.csv](src/Opifex.Rsvp/Data/InitialData.csv) (modify the [`SeedData`](src\Opifex.Rsvp\Data\SeedData.cs) as needed). The username is bound to an email address. You can also set a display name, an RSVP constraint if you want the users to only select from a specific set of RSVP options and also constrain the maximum number of guests they are allowed to add. Lastly, you can also assign a role to them via populating the data.
+Seeding of initial set of users using [InitialData.csv](src/Opifex.Rsvp/Data/InitialData.csv) (modify the [`SeedData`](src/Opifex.Rsvp/Data/SeedData.cs) as needed). The username is bound to an email address. You can also set a display name, an RSVP constraint if you want the users to only select from a specific set of RSVP options and also constrain the maximum number of guests they are allowed to add. Lastly, you can also assign a role to them via populating the data.
 
 ### Forgot Password & Password Reset
 Users that have been seeded in the system will need to setup a new password to sign in. The forgot password process, allows users to request a one time link to be sent to their email to reset their passowrd. This process works for new and existing users.
@@ -20,13 +20,13 @@ Additional access control with two distinct roles: Administrator, Manager. ASP.N
 and take additional action against them.
 
 ### RSVP
-Users will have the ability to RSVP for the event that is constrained based on the options that were seeded. The two default OOB options that are provided are **InPerson** and **Zoom**. See [`RsvpOptions`](src\Opifex.Rsvp\Data\RsvpOptions.cs) to discover references and how to augment it accordingly.
+Users will have the ability to RSVP for the event that is constrained based on the options that were seeded. The two default OOB options that are provided are **InPerson** and **Zoom**. See [`RsvpOptions`](src/Opifex.Rsvp/Data/RsvpOptions.cs) to discover references and how to augment it accordingly.
 
 ### Guest Management
 Each user will be able to manage a list of their guests that are attending the event. The total number of guests they can add is constrained by the `MaxGuests` data that was seeded. For users that RSVP'ed for Zoom only an email is required. For in person attendance, users have to submit identifying information, so that managers that have been given access can cross-check their IDs.
 
 ### Email Notifications
-Administrators can send emails to users from the three dashboard pages: [`Admin`](src\Opifex.Rsvp\Pages\Admin.cshtml), [`InPersonGuests`](src\Opifex.Rsvp\Pages\InPersonGuests.cshtml) and [`ZoomGuests`](src\Opifex.Rsvp\Pages\ZoomGuests.cshtml). Modify and augment as needed. The template is geared to use [SendGrid](https://sendgrid.com/) to send emails. If you're depolying this to Azure it's relatively easy to setup and configure. On [startup](src\Opifex.Rsvp\Startup.cs), the application specifically looks for a SendGrid API Key.
+Administrators can send emails to users from the three dashboard pages: [`Admin`](src/Opifex.Rsvp/Pages/Admin.cshtml), [`InPersonGuests`](src/Opifex.Rsvp/Pages/InPersonGuests.cshtml) and [`ZoomGuests`](src/Opifex.Rsvp/Pages/ZoomGuests.cshtml). Modify and augment as needed. The template is geared to use [SendGrid](https://sendgrid.com/) to send emails. If you're depolying this to Azure it's relatively easy to setup and configure. On [startup](src/Opifex.Rsvp/Startup.cs), the application specifically looks for a SendGrid API Key.
 
 ## Development
 If you want to get started with developing locally, you'll need the following:
