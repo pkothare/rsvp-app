@@ -31,7 +31,7 @@ Administrators can send emails to users from the three dashboard pages: [`Admin`
 ## Development
 If you want to get started with developing locally, you'll need the following:
 - [SQL Server Express LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
-- [ASP.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [ASP.NET Core 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
 - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
 
 Once you've downloaded and set everything up, clone (or fork and clone) this repository. From there change your working directory to `src\Opifex.Rsvp` and use the `dotnet` commands to get going. For more information see [.NET CLI overview](https://docs.microsoft.com/en-us/dotnet/core/tools/).
