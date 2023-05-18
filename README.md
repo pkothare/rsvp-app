@@ -1,4 +1,4 @@
-# Opifex.IO RSVP
+# RSVP Application
 
 ## Overview
 
